@@ -1,0 +1,224 @@
+object tSimpanan: TtSimpanan
+  Left = 337
+  Top = 151
+  Width = 630
+  Height = 480
+  BorderIcons = [biSystemMenu]
+  Caption = 'SIMPANAN MEMBER / TABUNGAN'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object a: TsPanel
+    Left = 0
+    Top = 0
+    Width = 614
+    Height = 193
+    Align = alTop
+    TabOrder = 0
+    SkinData.SkinSection = 'PANEL'
+    DesignSize = (
+      614
+      193)
+    object sGroupBox1: TsGroupBox
+      Left = 8
+      Top = 64
+      Width = 297
+      Height = 121
+      Caption = 'SIMPAN'
+      TabOrder = 0
+      CaptionLayout = clTopCenter
+      SkinData.SkinSection = 'GROUPBOX'
+      DesignSize = (
+        297
+        121)
+      object in_rek: TLabeledEdit
+        Left = 96
+        Top = 16
+        Width = 121
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 78
+        EditLabel.Height = 13
+        EditLabel.Caption = 'NO. REKENING'
+        LabelPosition = lpLeft
+        TabOrder = 0
+      end
+      object in_nominal: TLabeledEdit
+        Left = 96
+        Top = 64
+        Width = 121
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 49
+        EditLabel.Height = 13
+        EditLabel.Caption = 'NOMINAL'
+        LabelPosition = lpLeft
+        TabOrder = 1
+      end
+      object in_keterangan: TLabeledEdit
+        Left = 96
+        Top = 88
+        Width = 121
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 74
+        EditLabel.Height = 13
+        EditLabel.Caption = 'KETERANGAN'
+        LabelPosition = lpLeft
+        TabOrder = 2
+      end
+      object sPanel1: TsPanel
+        Left = 224
+        Top = 16
+        Width = 65
+        Height = 97
+        Anchors = [akTop, akRight, akBottom]
+        Caption = 'PROSES'
+        TabOrder = 3
+        OnClick = sPanel1Click
+        SkinData.SkinSection = 'PANEL'
+      end
+      object in_KodeSimpan: TLabeledEdit
+        Left = 96
+        Top = 40
+        Width = 121
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 74
+        EditLabel.Height = 13
+        EditLabel.Caption = 'KODE SIMPAN'
+        LabelPosition = lpLeft
+        TabOrder = 4
+      end
+    end
+    object sGroupBox2: TsGroupBox
+      Left = 8
+      Top = 8
+      Width = 601
+      Height = 41
+      Anchors = [akLeft, akTop, akRight]
+      Caption = 'CARI SIMPANAN'
+      TabOrder = 1
+      CaptionLayout = clTopCenter
+      SkinData.SkinSection = 'GROUPBOX'
+      DesignSize = (
+        601
+        41)
+      object f_Rek: TLabeledEdit
+        Left = 96
+        Top = 16
+        Width = 497
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 78
+        EditLabel.Height = 13
+        EditLabel.Caption = 'NO. REKENING'
+        LabelPosition = lpLeft
+        TabOrder = 0
+        OnChange = f_RekChange
+      end
+    end
+    object sGroupBox3: TsGroupBox
+      Left = 316
+      Top = 64
+      Width = 293
+      Height = 121
+      Caption = 'AMBIL'
+      TabOrder = 2
+      CaptionLayout = clTopCenter
+      SkinData.SkinSection = 'GROUPBOX'
+      DesignSize = (
+        293
+        121)
+      object out_rek: TLabeledEdit
+        Left = 96
+        Top = 16
+        Width = 117
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 78
+        EditLabel.Height = 13
+        EditLabel.Caption = 'NO. REKENING'
+        LabelPosition = lpLeft
+        TabOrder = 0
+      end
+      object out_nominal: TLabeledEdit
+        Left = 96
+        Top = 64
+        Width = 117
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 49
+        EditLabel.Height = 13
+        EditLabel.Caption = 'NOMINAL'
+        LabelPosition = lpLeft
+        TabOrder = 1
+      end
+      object out_keterangan: TLabeledEdit
+        Left = 96
+        Top = 88
+        Width = 117
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 74
+        EditLabel.Height = 13
+        EditLabel.Caption = 'KETERANGAN'
+        LabelPosition = lpLeft
+        TabOrder = 2
+      end
+      object sPanel2: TsPanel
+        Left = 220
+        Top = 16
+        Width = 65
+        Height = 97
+        Anchors = [akTop, akRight, akBottom]
+        Caption = 'PROSES'
+        TabOrder = 3
+        OnClick = sPanel2Click
+        SkinData.SkinSection = 'PANEL'
+      end
+      object out_KodeAmbil: TLabeledEdit
+        Left = 96
+        Top = 40
+        Width = 117
+        Height = 21
+        Anchors = [akLeft, akTop, akRight]
+        EditLabel.Width = 65
+        EditLabel.Height = 13
+        EditLabel.Caption = 'KODE AMBIL'
+        LabelPosition = lpLeft
+        TabOrder = 4
+      end
+    end
+    object Memo1: TMemo
+      Left = 408
+      Top = -16
+      Width = 185
+      Height = 89
+      TabOrder = 3
+      Visible = False
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 193
+    Width = 614
+    Height = 248
+    Align = alClient
+    DataSource = dbModule.dbDataSource
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+  end
+end

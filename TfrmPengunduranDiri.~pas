@@ -1,0 +1,24 @@
+unit TfrmPengunduranDiri;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TPengunduranAnggota = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  PengunduranAnggota: TPengunduranAnggota;
+
+implementation
+
+{$R *.dfm}
+
+end.
