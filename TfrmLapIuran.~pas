@@ -1,0 +1,24 @@
+unit TfrmLapIuran;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  TLapIuran = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  LapIuran: TLapIuran;
+
+implementation
+
+{$R *.dfm}
+
+end.

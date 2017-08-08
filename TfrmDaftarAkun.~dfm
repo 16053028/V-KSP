@@ -1,0 +1,284 @@
+object DaftarAkun: TDaftarAkun
+  Left = 464
+  Top = 166
+  Width = 928
+  Height = 480
+  Align = alClient
+  BorderIcons = [biSystemMenu]
+  Caption = 'Daftar Akun'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 209
+    Width = 912
+    Height = 232
+    Align = alClient
+    DataSource = dbModule.dbDataSource
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+  end
+  object headContainer: TsPanel
+    Left = 0
+    Top = 0
+    Width = 912
+    Height = 209
+    Align = alTop
+    TabOrder = 2
+    SkinData.SkinSection = 'PANEL'
+    DesignSize = (
+      912
+      209)
+    object sGroupBox1: TsGroupBox
+      Left = 8
+      Top = 8
+      Width = 241
+      Height = 89
+      Caption = 'Cari Akun'
+      TabOrder = 0
+      SkinData.SkinSection = 'GROUPBOX'
+      object in_Cari: TsEdit
+        Left = 2
+        Top = 15
+        Width = 237
+        Height = 21
+        Color = clWhite
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 0
+        Text = 'Masukkan NIK atau USERNAME'
+        OnChange = in_CariChange
+        OnClick = in_CariClick
+        Align = alTop
+        SkinData.SkinSection = 'EDIT'
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'MS Sans Serif'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+      end
+      object sPanel6: TsPanel
+        Left = 2
+        Top = 48
+        Width = 237
+        Height = 39
+        Align = alBottom
+        Caption = 'Proses'
+        TabOrder = 1
+        OnClick = sPanel6Click
+        SkinData.SkinSection = 'PANEL'
+      end
+    end
+    object sGroupBox2: TsGroupBox
+      Left = 8
+      Top = 104
+      Width = 241
+      Height = 97
+      Caption = 'Operasi'
+      TabOrder = 1
+      SkinData.SkinSection = 'GROUPBOX'
+      object btnTambah: TsPanel
+        Left = 2
+        Top = 15
+        Width = 237
+        Height = 26
+        Align = alTop
+        Caption = 'Tambah'
+        TabOrder = 0
+        OnClick = btnTambahClick
+        SkinData.SkinSection = 'PANEL'
+      end
+      object btnEdit: TsPanel
+        Left = 2
+        Top = 41
+        Width = 237
+        Height = 26
+        Align = alTop
+        Caption = 'Edit'
+        TabOrder = 1
+        Visible = False
+        OnClick = btnEditClick
+        SkinData.SkinSection = 'PANEL'
+      end
+      object btnDelete: TsPanel
+        Left = 2
+        Top = 67
+        Width = 237
+        Height = 26
+        Align = alTop
+        Caption = 'Delete'
+        TabOrder = 2
+        Visible = False
+        OnClick = btnDeleteClick
+        SkinData.SkinSection = 'PANEL'
+      end
+    end
+    object sGroupBox3: TsGroupBox
+      Left = 256
+      Top = 8
+      Width = 648
+      Height = 153
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      TabOrder = 2
+      Visible = False
+      SkinData.SkinSection = 'GROUPBOX'
+      DesignSize = (
+        648
+        153)
+      object sLabel1: TsLabel
+        Left = 32
+        Top = 120
+        Width = 36
+        Height = 13
+        Caption = 'Status :'
+      end
+      object in_Username: TLabeledEdit
+        Left = 72
+        Top = 51
+        Width = 464
+        Height = 21
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        EditLabel.Width = 57
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Username : '
+        LabelPosition = lpLeft
+        TabOrder = 0
+        OnClick = in_UsernameClick
+      end
+      object in_Password: TLabeledEdit
+        Left = 72
+        Top = 85
+        Width = 464
+        Height = 21
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        EditLabel.Width = 55
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Password : '
+        LabelPosition = lpLeft
+        TabOrder = 1
+        OnChange = in_PasswordChange
+      end
+      object in_Status: TsComboBox
+        Left = 72
+        Top = 117
+        Width = 464
+        Height = 21
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        Alignment = taLeftJustify
+        BoundLabel.Indent = 0
+        BoundLabel.Font.Charset = DEFAULT_CHARSET
+        BoundLabel.Font.Color = clWindowText
+        BoundLabel.Font.Height = -11
+        BoundLabel.Font.Name = 'MS Sans Serif'
+        BoundLabel.Font.Style = []
+        BoundLabel.Layout = sclLeft
+        BoundLabel.MaxWidth = 0
+        BoundLabel.UseSkinColor = True
+        SkinData.SkinSection = 'COMBOBOX'
+        VerticalAlignment = taAlignTop
+        Color = clWhite
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        ItemHeight = 15
+        ItemIndex = -1
+        ParentFont = False
+        TabOrder = 2
+        Text = 'Pilih...'
+        OnClick = in_StatusClick
+        Items.Strings = (
+          'Admin'
+          'Staff')
+      end
+      object in_Kode: TLabeledEdit
+        Left = 72
+        Top = 18
+        Width = 369
+        Height = 21
+        Anchors = [akLeft, akTop, akRight, akBottom]
+        EditLabel.Width = 34
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Kode : '
+        LabelPosition = lpLeft
+        TabOrder = 3
+        OnChange = in_KodeChange
+        OnClick = in_KodeClick
+      end
+      object btnSimpan: TsPanel
+        Left = 551
+        Top = 16
+        Width = 89
+        Height = 41
+        Anchors = [akRight]
+        Caption = 'Simpan'
+        TabOrder = 4
+        Visible = False
+        OnClick = btnSimpanClick
+        SkinData.SkinSection = 'PANEL'
+      end
+      object btnCancel: TsPanel
+        Left = 549
+        Top = 93
+        Width = 89
+        Height = 41
+        Anchors = [akRight]
+        Caption = 'Cancel'
+        TabOrder = 5
+        OnClick = btnCancelClick
+        SkinData.SkinSection = 'PANEL'
+      end
+      object sButton1: TsButton
+        Left = 448
+        Top = 16
+        Width = 83
+        Height = 25
+        Anchors = [akRight]
+        Caption = 'Cari Karyawan'
+        TabOrder = 6
+        OnClick = sButton1Click
+        SkinData.SkinSection = 'BUTTON'
+      end
+    end
+    object sProgressBar1: TsProgressBar
+      Left = 264
+      Top = 176
+      Width = 632
+      Height = 17
+      Anchors = [akLeft, akRight]
+      TabOrder = 3
+      Visible = False
+      SkinData.SkinSection = 'GAUGE'
+    end
+  end
+  object Memo1: TMemo
+    Left = 272
+    Top = 24
+    Width = 185
+    Height = 89
+    TabOrder = 0
+    Visible = False
+  end
+end

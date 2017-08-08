@@ -1,0 +1,38 @@
+23072017
+Login Function -> Done
+Create Form Insode Form for all Fiture -> Done.
+Ai Main Windows -> Done
+Responsive main windows -> done
+GUI main windows -> Done
+
+Progress 20% done.
+
+23012017
+Daftar Anggota -> 50%
+Cari Anggota -> 0%
+Pendaftaran Anggota -> 0%
+Pengunduran Diri Anggota -> 0%
+Migration to Karyawan
+
+23072017
+Daftar Karyawan -> 75%
+Daftar Akun -> 100%
+GUI -> 100%
+
+23072017
+Daftar Akun Code migration Custom Procedure
+Feature fixed and tested no Bug and error
+next Agenda is Karyawan. Just Copy Paste XD..
+
+23072017
+Create Daftar Karyawan 75% Compleate;
+Need Test And Debug.
+
+26072017
+Create Daftar Karyawan 100% Compleate;
+Test And Debug no error found
+Start Working in code Member.
+Pendaftaran, Pengunduran Diri, Pembuatan Rekening, Update.
+
+29072017
+Progress 40% done.

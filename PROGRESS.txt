@@ -1,0 +1,33 @@
+23072017
+Finalization Database and Fixed. Ready for Software
+Application Main GUI 100%
+Application Feature SetUp
+The Form is finished but not yet SetUp
+Code is 5% total.
+Query is 100%
+GUI is 10%
+Feature is 25%
+
+23072017
+Code is 15%
+Query is 100%
+GUI is 20%
+Feature is 30%
+
+23072017
+Code is 17%
+Query is 100%
+GUI is 20%
+Feature is 30%
+
+24072017
+Code is 20%%
+Query is 100%
+GUI is 25%
+Feature is 33%
+
+29072017
+Code is 40%
+Query is 100%
+GUI is 50%
+Feature is 44%

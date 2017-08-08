@@ -1,0 +1,172 @@
+unit TfrmAngsuran;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, sButton, ExtCtrls, sGroupBox, Grids, DBGrids, sPanel,
+  sComboBox;
+
+type
+  TtAngsuran = class(TForm)
+    sPanel1: TsPanel;
+    DBGrid1: TDBGrid;
+    sGroupBox1: TsGroupBox;
+    in_Ket: TLabeledEdit;
+    in_NominalAngsuran: TLabeledEdit;
+    in_Bunga: TLabeledEdit;
+    in_Total: TLabeledEdit;
+    btnBayar: TsButton;
+    btnCetak: TsButton;
+    in_KodeAngsuran: TLabeledEdit;
+    in_CariPinjaman: TsComboBox;
+    Memo1: TMemo;
+    in_NIM: TEdit;
+    //== Begin of Custom DB Procedure
+      procedure LoadACCPengajuan();
+      procedure conDB_MainTBL();
+      procedure LoadDataFromDB();
+      procedure BayarAngsuran();
+      procedure ADDData();
+    procedure FormShow(Sender: TObject);
+    procedure in_CariPinjamanChange(Sender: TObject);
+    procedure btnBayarClick(Sender: TObject);
+    //== End of Custom DB Procedure
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  tAngsuran: TtAngsuran;
+  totalPinjam: Currency;
+
+implementation
+
+uses moduleDB, ADODB, TfrmDashboard;
+
+{$R *.dfm}
+
+//== Begin of Custom DB Procedure
+procedure TtAngsuran.LoadACCPengajuan();
+begin
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add('SELECT * FROM pinjaman_member WHERE KETERANGAN = "DISETUJUI"');
+      Open;
+    end;
+  while not dbModule.dbQuery.Eof do
+    begin
+      in_CariPinjaman.Items.Add(dbModule.dbQuery.FieldByName('KODE_PINJAM').Value);
+      dbModule.dbQuery.Next;
+    end;
+end;
+
+procedure TtAngsuran.conDB_MainTBL();
+begin
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add(Memo1.Text);
+      Open;
+    end;
+end;
+
+procedure TtAngsuran.LoadDataFromDB();
+begin
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add('SELECT * FROM pinjaman_member WHERE KODE_PINJAM = '+ QuotedStr(in_CariPinjaman.Text));
+      ExecSQL;
+      Open;
+     totalPinjam:= dbModule.dbQuery.FieldByName('JUMLAH_PINJAMAN').Value;
+      in_NominalAngsuran.Text:= dbModule.dbQuery.FieldByName('ANGSURAN').Value;
+      in_Bunga.Text:= dbModule.dbQuery.FieldByName('BUNGA').Value;
+      in_NIM.Text:=dbModule.dbQuery.FieldByName('NIM').Value;
+      in_Total.Text:= CurrToStr(StrToCurr(in_NominalAngsuran.Text)+StrToCurr(in_Bunga.Text));
+    end;
+
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add(Memo1.Text);
+      SQL.Add('WHERE pinjaman_member.KODE_PINJAM = '+QuotedStr(in_KodeAngsuran.Text));
+      Open;
+    end;
+  if dbModule.dbQuery.RecordCount>=0 then
+    begin
+      in_Ket.Text:=IntToStr(dbModule.dbQuery.RecordCount+1);
+    end
+  else if(StrToInt(in_Ket.Text)>(dbModule.dbQuery.RecordCount+1)) then
+    begin
+      ShowMessage('Sudah Lunas');
+    end;
+conDB_MainTBL();
+end;
+
+procedure TtAngsuran.BayarAngsuran();
+begin
+totalPinjam:= totalPinjam-StrToCurr(in_Total.Text);
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add('UPDATE pinjaman_member');
+      SQL.Add('SET JUMLAH_PINJAMAN = '+QuotedStr(CurrToStr(totalPinjam)));
+      SQL.Add('WHERE KODE_PINJAM = '+QuotedStr(in_CariPinjaman.Text));
+      ExecSQL;
+    end;
+end;
+
+procedure TtAngsuran.ADDData();
+begin
+  with dbModule.dbQuery do
+    begin
+      SQL.Clear;
+      SQL.Add('INSERT INTO angsuran_member');
+      SQL.Add('(KODE_PINJAM, KODE_ANGSURAN, TANGGAL_ANGSURAN, NOMINAL, BUNGA, KETERANGAN, NIK)');
+      SQL.Add('VALUES ( '+QuotedStr(in_CariPinjaman.Text)+', '
+                         +QuotedStr(in_KodeAngsuran.Text)+', '
+                         +QuotedStr(DateToStr(now))+', '
+                         +QuotedStr(in_NominalAngsuran.Text)+', '
+                         +QuotedStr(in_Bunga.Text)+', '
+                         +QuotedStr(in_ket.Text)+', '
+                         +QuotedStr(NIK)+' );');
+      ExecSQL;
+      SQL.Clear;
+      SQL.Add('INSERT INTO history_transaksi');
+      SQL.Add('(KODE_TRANSAKSI, NIM, NIK, TANGGAL, TRANSAKSI)');
+      SQL.Add('VALUES ('+QuotedStr(in_KodeAngsuran.Text)+', '
+                        +QuotedStr(in_NIM.Text)+', '
+                        +QuotedStr(NIK)+', '
+                        +QuotedStr(DateToStr(now))+', '
+                        +QuotedStr(in_Ket.Text)+');');
+      ExecSQL;
+      Close;
+      conDB_MainTBL();
+      Requery();
+    end;
+end;
+//== End of Custom DB Procedure
+
+procedure TtAngsuran.FormShow(Sender: TObject);
+begin
+LoadACCPengajuan();
+Memo1.Lines.LoadFromFile('.\data\database\QueryCom\AngsuranQuery.txt');
+conDB_MainTBL();
+end;
+
+procedure TtAngsuran.in_CariPinjamanChange(Sender: TObject);
+begin
+  LoadDataFromDB();
+end;
+
+procedure TtAngsuran.btnBayarClick(Sender: TObject);
+begin
+BayarAngsuran();
+ADDData();
+end;
+
+end.
